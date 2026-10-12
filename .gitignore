@@ -361,3 +361,13 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# --- SORA Executive Workspace additions ---
+# Secrets: real DB connection string, seed passwords (see docs/RUNBOOK.md §2)
+SRV_Demo/appsettings.Local.json
+SRV_Demo/appsettings.Production.json
+SRV_Demo/appsettings.*.local.json
+# React client
+SRV_Demo/ClientApp/node_modules/
+SRV_Demo/ClientApp/dist/
+# NOTE: SRV_Demo/wwwroot/app (built React bundle) is intentionally tracked so `dotnet run` works after a clone.
+# Rebuild it with scripts/build-client.ps1 whenever ClientApp/src changes.

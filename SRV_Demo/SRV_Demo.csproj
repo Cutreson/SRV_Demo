@@ -4,6 +4,24 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>SRV_Demo</RootNamespace>
+    <!-- React source (ClientApp) is built by Vite into wwwroot/app; MSBuild must not glob it. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);ClientApp/**</DefaultItemExcludes>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySqlConnector" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\Migrations\*.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Machine-local secrets stay on the developer machine; a published site is configured with
+         ConnectionStrings__Default (environment variable) or its own appsettings.Production.json. -->
+    <Content Update="appsettings.Local.json" CopyToPublishDirectory="Never" />
+    <Content Update="appsettings.Local.example.json" CopyToPublishDirectory="Never" />
+  </ItemGroup>
 
 </Project>
